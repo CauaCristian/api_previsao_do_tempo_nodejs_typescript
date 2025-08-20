@@ -1,11 +1,23 @@
+import "reflect-metadata";
+import { createServer } from "./server";
+import {AppDataSource} from "../src/modules/config/db/postgres_db";
+import "dotenv/config";
 
-import express ,{Request, Response} from 'express';
-const app = express();
-const port = 3000;
-app.use(express.json());
-app.get("/", (req: Request, res: Response) => {
-    res.json({ message: "Servidor Node + TypeScript rodando 🚀" });
-});
-app.listen(port, () => {
-    console.log(`Server rodando em http://localhost:${port}`);
-});
+const PORT = process.env.PORT || 3000;
+
+async function start() {
+    try {
+        await AppDataSource.initialize();
+        console.log("📦 Banco conectado com sucesso!");
+
+        const app = createServer();
+
+        app.listen(PORT, () => {
+            console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
+        });
+    } catch (error) {
+        console.error("❌ Erro ao iniciar aplicação:", error);
+    }
+}
+
+start();
