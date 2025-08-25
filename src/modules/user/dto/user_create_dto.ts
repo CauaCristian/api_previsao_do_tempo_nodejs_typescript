@@ -3,7 +3,7 @@ import { IsEmail, IsNotEmpty, IsString , Length, MinLength} from 'class-validato
  * @openapi
  * components:
  *   schemas:
- *     UserCreateDto:
+ *     User_Create_Dto:
  *       type: object
  *       required:
  *         - name

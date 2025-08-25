@@ -13,6 +13,8 @@ export class User_Entity {
     @Column({ nullable:false ,type:"varchar"})
     @MinLength(6, { message: "A senha deve ter pelo menos 6 caracteres" })
     password!: string;
-    @Column({nullable: false,type:"varchar"})
+    @Column({nullable: true,type:"varchar"})
+    profile_photo!: string;
+    @Column({ nullable: false , type:"varchar"})
     role!: string;
 }

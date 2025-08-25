@@ -14,23 +14,24 @@ export class User_Service {
             user_response.id,
             user_response.name,
             user_response.email,
-            user_response.role
+            user_response.role,
+            user_response.profile_photo,
         );
     }
 
     async getUserById(id: number): Promise<any> {
         return await this.userRepository.findOneBy({ id });
     }
-
+    async getByEmail(email:string): Promise<any> {
+        return await this.userRepository.findOneBy({ email });
+    }
     async updateUser(id: number, user: any): Promise<any> {
         await this.userRepository.update(id, user);
         return this.getUserById(id);
     }
-
     async deleteUser(id: number): Promise<void> {
         await this.userRepository.delete(id);
     }
-
     async getAllUsers(): Promise<any[]> {
         return await this.userRepository.find();
     }
